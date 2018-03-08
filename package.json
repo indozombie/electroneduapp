@@ -1,0 +1,19 @@
+{
+  "name": "electroneduapp",
+  "version": "1.0.0",
+  "description": "A simple Electron app for teachers to use, to assist their workflow. ",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/indozombie/electroneduapp.git"
+  },
+  "author": "Joel Staples (indozombie)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/indozombie/electroneduapp/issues"
+  },
+  "homepage": "https://github.com/indozombie/electroneduapp#readme"
+}
