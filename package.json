@@ -2,9 +2,9 @@
   "name": "electroneduapp",
   "version": "1.0.0",
   "description": "A simple Electron app for teachers to use, to assist their workflow. ",
-  "main": "main.js",
+  "main": "./src/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron ."
   },
   "repository": {
     "type": "git",
