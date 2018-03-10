@@ -15,13 +15,15 @@ const {app, Menu, globalShortcut} = require('electron')
         {label: 'Exit',
         accelerator:
         app.on('ready', () => {
-          globalShortcut.register('CmdorCTRL+Q', () => {
-            app.exit([0]);
-        })}),
+          globalShortcut.register('CommandorControl+Q', () => {
+            app.quit();
+          })
+        }),
           click () {
-            app.exit([0]);
-          }
-      ],
+            app.exit([0]);}
+        }
+      ]
+    },
     {
       label: 'Edit',
       submenu: [
