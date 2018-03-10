@@ -59,7 +59,10 @@ const {app, Menu, globalShortcut} = require('electron')
         {label: 'Import List'},
         {label: 'Save List'},
         {type: 'separator'},
-        {label: 'Date Today...'},
+        {label: 'Date Today...',
+        click (item, browserWindow) {
+          if (browserWindow) browserWindow.reload()
+        }},
         {type: 'separator'},
         {label: 'Clear All'},
       ]
