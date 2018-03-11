@@ -1,7 +1,6 @@
-const {app, Menu, globalShortcut} = require('electron')
-const BrowserWindow = require('electron')
-const electron = require('electron')
-const ipcRenderer = require('electron')
+const remote = require('electron').remote
+const {electron, app, BrowserWindow, Menu, globalShortcut, ipcRenderer} = require('electron')
+const main = require('../src/main.js').remote
 const template = [
     {
       label: 'File',
@@ -64,14 +63,9 @@ const template = [
         {label: 'Save List'},
         {type: 'separator'},
         {label: 'Date Today...',
-<<<<<<< HEAD
         id: 'dateToday',
         click () {
-          console.log('clicked')
-=======
-        click (item, browserWindow) {
-          if (browserWindow) browserWindow.reload()
->>>>>>> 8b5d44924e190272ee4375863e80e8b7e94e509a
+          menu.popup(BrowserWindow)
         }},
         {type: 'separator'},
         {label: 'Clear All'},

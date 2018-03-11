@@ -11,7 +11,7 @@ const navbar = require('../navbar/navbar.js')
   function createWindow () {
     // Create the browser window.
     mainWindow = new BrowserWindow({width:800, height:600})
-    childWindow = new BrowserWindow({width:400, height:300, parent:mainWindow, modal:true, frame:false, titleBarStyle:'hidden', titleBarStyle: 'customeButtonOnHover', show:false})
+    childWindow = new BrowserWindow({width:400, height:300, parent:mainWindow, modal:true, frame:true, show:false})
     childWindow.once('ready-to-show', () => {
       childWindow.show()
     })
