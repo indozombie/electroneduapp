@@ -64,9 +64,14 @@ const template = [
         {label: 'Save List'},
         {type: 'separator'},
         {label: 'Date Today...',
+<<<<<<< HEAD
         id: 'dateToday',
         click () {
           console.log('clicked')
+=======
+        click (item, browserWindow) {
+          if (browserWindow) browserWindow.reload()
+>>>>>>> 8b5d44924e190272ee4375863e80e8b7e94e509a
         }},
         {type: 'separator'},
         {label: 'Clear All'},
