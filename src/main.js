@@ -1,33 +1,47 @@
-const {app, BrowserWindow, Menu} = require('electron')
+const {app, BrowserWindow, Menu, MenuItem, ipcMain} = require('electron')
 const path = require('path')
 const url = require('url')
 const navbar = require('../navbar/navbar.js')
 
   // Keep a global reference of the window object, if you don't, the window will
   // be closed automatically when the JavaScript object is garbage collected.
-  let win
+  let mainWindow
+  let childWindow
 
   function createWindow () {
     // Create the browser window.
-    win = new BrowserWindow({width: 800, height: 600})
-
+    mainWindow = new BrowserWindow({width:800, height:600})
+    childWindow = new BrowserWindow({width:400, height:300, parent:mainWindow, modal:true, frame:false, titleBarStyle:'hidden', titleBarStyle: 'customeButtonOnHover', show:false})
+    childWindow.once('ready-to-show', () => {
+      childWindow.show()
+    })
     // and load the index.html of the app.
-    win.loadURL(url.format({
+    mainWindow.loadURL(url.format({
       pathname: path.join(__dirname, 'main.html'),
+      protocol: 'file:',
+      slashes: true
+    }))
+    childWindow.loadURL(url.format({
+      pathname: path.join(__dirname, '../navbar.navbar.html'),
       protocol: 'file:',
       slashes: true
     }))
 
     // Open the DevTools.
-    // win.webContents.openDevTools()
+    // mainWindow.webContents.openDevTools()
+    // childWindow.webContents.openDevTools()
 
     // Emitted when the window is closed.
-    win.on('closed', () => {
-      // Dereference the window object, usually you would store windows
-      // in an array if your app supports multi windows, this is the time
-      // when you should delete the corresponding element.
-      win = null
+    mainWindow.on('closed', () => {
+      mainWindow = null
     })
+    childWindow.on('closed', () => {
+      mainWindow = null
+    })
+
+
+
+// End of Funtion
   }
 
   // This method will be called when Electron has finished
@@ -51,6 +65,3 @@ const navbar = require('../navbar/navbar.js')
   })
 
 module.exports = ('./navbar.navbar.js')
-  app.on('ready', () => {'/navbar/navbar.js'})
-  // In this file you can include the rest of your app's specific main process
-  // code. You can also put them in separate files and require them here.

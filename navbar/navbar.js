@@ -1,26 +1,24 @@
 const {app, Menu, globalShortcut} = require('electron')
-
-  const template = [
+const BrowserWindow = require('electron')
+const electron = require('electron')
+const ipcRenderer = require('electron')
+const template = [
     {
       label: 'File',
       submenu: [
         {label: 'Create File'},
         {label: 'Import File'},
-        {label: 'Save File'},
         {label: 'Open Recent'},
         {type: 'separator'},
-        {label: 'Save'},
-        {label: 'Save As'},
+        {label: 'Save',
+        accelerator: 'CmdorCtrl+ALT+S'},
+        {label: 'Save As',
+        accelerator: 'CmdorCtrl+S'},
         {type: 'separator'},
         {label: 'Exit',
-        accelerator:
-        app.on('ready', () => {
-          globalShortcut.register('CommandorControl+Q', () => {
-            app.quit();
-          })
-        }),
+        accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q',
           click () {
-            app.exit([0]);}
+            app.quit();}
         }
       ]
     },
@@ -41,13 +39,19 @@ const {app, Menu, globalShortcut} = require('electron')
     {
       label: 'Comments',
       submenu: [
-        {label: 'Create File'},
-        {label: 'Import File'},
-        {label: 'Save File'},
+        {label: 'Create File',
+        accelerator: 'CmdorCtrl+F'},
+        {label: 'Import File',
+        accelerator: 'CmdorCtrl+ALT+F'},
+        {label: 'Save File',
+        accelerator: 'CmdorCtrl+Shift+F'},
         {type: 'separator'},
-        {label: 'Create Comment Database'},
-        {label: 'Find Comment Database'},
-        {label: 'Save Comment Database'},
+        {label: 'Create Comment Database',
+        accelerator: 'CmdorCtrl+D'},
+        {label: 'Find Comment Database',
+        accelerator: 'CmdorCtrl+D'},
+        {label: 'Save Comment Database',
+        accelerator: 'CmdorCtrl+Shift+D'},
         {type: 'separator'},
         {label: 'Clear All'},
       ]
@@ -59,7 +63,11 @@ const {app, Menu, globalShortcut} = require('electron')
         {label: 'Import List'},
         {label: 'Save List'},
         {type: 'separator'},
-        {label: 'Date Today...'},
+        {label: 'Date Today...',
+        id: 'dateToday',
+        click () {
+          console.log('clicked')
+        }},
         {type: 'separator'},
         {label: 'Clear All'},
       ]
@@ -83,14 +91,5 @@ const {app, Menu, globalShortcut} = require('electron')
     },
   ]
 
-
-
-  const menu = Menu.buildFromTemplate(template)
-  Menu.setApplicationMenu(menu)
-
-
-app.on('windows-all-closed', () => {
-  if(process.platform !== 'darwin') {
-    app.quit();
-  }
-})
+const menu = Menu.buildFromTemplate(template)
+Menu.setApplicationMenu(menu)
