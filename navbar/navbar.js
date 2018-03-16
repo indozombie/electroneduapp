@@ -171,7 +171,10 @@ const template = [
         label: "Share with other Teachers"
       },
       {
-        label: "Ask the Community"
+        label: "Ask the Community",
+        click () {
+
+        }
       }
     ]
   }
@@ -181,28 +184,33 @@ const menu = Menu.buildFromTemplate(template);
 Menu.setApplicationMenu(menu);
 
 // Adding function for a click on MenuItem
-var dateToday = null;
+const dateFormat = require('dateformat')
 
+var dateToday = null;
 //Function for click event
 function opendateWindow() {
   if (dateToday) {
-    dateToday.focus();
+    dateToday.focus()
     return;
   }
   // Defining window size
   dateToday = new BrowserWindow({
-    height: 200,
+    height: 100,
     resizable: false,
     width: 300,
     title: "The Date Today is...",
     minimizable: true,
     fullscreenable: false,
-    frame: true
+    frame: true,
+    backgroundColor: '#823981'
+  });
+  dateToday.once('ready-to-show', () => {
+    dateToday.show()
   });
   // Setting Menu in Window to not show
   dateToday.setMenu(null)
   // Window URL
-  dateToday.loadURL("file://${__dirname}/navbar/navbar.html");
+  dateToday.loadURL("file://${__dirname}/navbar/date.html");
   // On close of window
   dateToday.on("closed", function() {
     dateToday = null;

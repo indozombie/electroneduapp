@@ -10,10 +10,15 @@ let childWindow;
 
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({
+  let mainWindow = new BrowserWindow({
     width: 800,
-    height: 600
+    height: 600,
+    show: false,
   });
+
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show()
+  })
 
   // and load the index.html of the app.
   mainWindow.loadURL(
@@ -25,8 +30,8 @@ function createWindow() {
   );
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
-  // childWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools();
+  // // childWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on("closed", () => {

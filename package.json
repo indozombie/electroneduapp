@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/indozombie/electroneduapp/issues"
   },
-  "homepage": "https://github.com/indozombie/electroneduapp#readme"
+  "homepage": "https://github.com/indozombie/electroneduapp#readme",
+  "dependencies": {
+    "dateformat": "^3.0.3"
+  }
 }
