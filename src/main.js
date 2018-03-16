@@ -14,28 +14,11 @@ function createWindow() {
     width: 800,
     height: 600
   });
-  childWindow = new BrowserWindow({
-    width: 400,
-    height: 300,
-    parent: mainWindow,
-    modal: true,
-    frame: true,
-    show: false
-  });
-  childWindow.once("ready-to-show", () => {
-    childWindow.show();
-  });
+
   // and load the index.html of the app.
   mainWindow.loadURL(
     url.format({
       pathname: path.join(__dirname, "main.html"),
-      protocol: "file:",
-      slashes: true
-    })
-  );
-  childWindow.loadURL(
-    url.format({
-      pathname: path.join(__dirname, "../navbar.navbar.html"),
       protocol: "file:",
       slashes: true
     })
@@ -47,9 +30,6 @@ function createWindow() {
 
   // Emitted when the window is closed.
   mainWindow.on("closed", () => {
-    mainWindow = null;
-  });
-  childWindow.on("closed", () => {
     mainWindow = null;
   });
 

@@ -197,9 +197,10 @@ function opendateWindow() {
     title: "The Date Today is...",
     minimizable: true,
     fullscreenable: false,
-    frame: true,
-    menu: false
+    frame: true
   });
+  // Setting Menu in Window to not show
+  dateToday.setMenu(null)
   // Window URL
   dateToday.loadURL("file://${__dirname}/navbar/navbar.html");
   // On close of window
