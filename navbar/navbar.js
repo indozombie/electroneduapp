@@ -1,41 +1,43 @@
-const remote = require('electron').remote
+const remote = require("electron").remote;
 const {
   electron,
   app,
   BrowserWindow,
   Menu,
-  globalShortcut,
-} = require('electron')
-const ipcRenderer = require('electron').ipcRenderer
-const main = require('../src/main.js').remote
-const template = [{
-    label: 'File',
-    submenu: [{
-        label: 'Create File'
+  globalShortcut
+} = require("electron");
+const ipcRenderer = require("electron").ipcRenderer;
+const main = require("../src/main.js").remote;
+const template = [
+  {
+    label: "File",
+    submenu: [
+      {
+        label: "Create File"
       },
       {
-        label: 'Import File'
+        label: "Import File"
       },
       {
-        label: 'Open Recent'
+        label: "Open Recent"
       },
       {
-        type: 'separator'
+        type: "separator"
       },
       {
-        label: 'Save',
-        accelerator: 'CmdorCtrl+ALT+S'
+        label: "Save",
+        accelerator: "CmdorCtrl+ALT+S"
       },
       {
-        label: 'Save As',
-        accelerator: 'CmdorCtrl+S'
+        label: "Save As",
+        accelerator: "CmdorCtrl+S"
       },
       {
-        type: 'separator'
+        type: "separator"
       },
       {
-        label: 'Exit',
-        accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q',
+        label: "Exit",
+        accelerator: process.platform == "darwin" ? "Command+Q" : "Ctrl+Q",
         click() {
           app.quit();
         }
@@ -43,159 +45,166 @@ const template = [{
     ]
   },
   {
-    label: 'Edit',
-    submenu: [{
-        label: 'a'
+    label: "Edit",
+    submenu: [
+      {
+        label: "a"
       },
       {
-        label: 'a'
+        label: "a"
       },
       {
-        label: 'a'
+        label: "a"
       },
       {
-        label: 'separator'
+        label: "separator"
       },
       {
-        label: 'a'
+        label: "a"
       },
       {
-        label: 'a'
+        label: "a"
       },
       {
-        label: 'a'
+        label: "a"
       },
       {
-        type: 'separator'
+        type: "separator"
       },
       {
-        label: 'a'
-      },
+        label: "a"
+      }
     ]
   },
   {
-    label: 'Comments',
-    submenu: [{
-        label: 'Create File',
-        accelerator: 'CmdorCtrl+F'
+    label: "Comments",
+    submenu: [
+      {
+        label: "Create File",
+        accelerator: "CmdorCtrl+F"
       },
       {
-        label: 'Import File',
-        accelerator: 'CmdorCtrl+ALT+F'
+        label: "Import File",
+        accelerator: "CmdorCtrl+ALT+F"
       },
       {
-        label: 'Save File',
-        accelerator: 'CmdorCtrl+Shift+F'
+        label: "Save File",
+        accelerator: "CmdorCtrl+Shift+F"
       },
       {
-        type: 'separator'
+        type: "separator"
       },
       {
-        label: 'Create Comment Database',
-        accelerator: 'CmdorCtrl+D'
+        label: "Create Comment Database",
+        accelerator: "CmdorCtrl+D"
       },
       {
-        label: 'Find Comment Database',
-        accelerator: 'CmdorCtrl+D'
+        label: "Find Comment Database",
+        accelerator: "CmdorCtrl+D"
       },
       {
-        label: 'Save Comment Database',
-        accelerator: 'CmdorCtrl+Shift+D'
+        label: "Save Comment Database",
+        accelerator: "CmdorCtrl+Shift+D"
       },
       {
-        type: 'separator'
+        type: "separator"
       },
       {
-        label: 'Clear All'
-      },
+        label: "Clear All"
+      }
     ]
   },
   {
-    label: 'Attendance',
-    submenu: [{
-        label: 'Create List'
+    label: "Attendance",
+    submenu: [
+      {
+        label: "Create List"
       },
       {
-        label: 'Import List'
+        label: "Import List"
       },
       {
-        label: 'Save List'
+        label: "Save List"
       },
       {
-        type: 'separator'
+        type: "separator"
       },
       {
-        label: 'Date Today...',
-        id: 'dateToday',
-        click () {
+        label: "Date Today...",
+        id: "dateToday",
+        click() {
           opendateWindow();
-      }
+        }
       },
       {
-        type: 'separator'
+        type: "separator"
       },
       {
-        label: 'Clear All'
-      },
-    ]
-  },
-  {
-    label: 'Options',
-    submenu: [{
-        label: 'Word Count'
-      },
-      {
-        label: 'Character Count'
-      },
-      {
-        label: 'Spell Check'
-      },
-      {
-        label: 'Grammar Check'
+        label: "Clear All"
       }
     ]
   },
   {
-    label: 'Help',
-    submenu: [{
-        label: 'Check for Updates'
+    label: "Options",
+    submenu: [
+      {
+        label: "Word Count"
       },
       {
-        label: 'Share with other Teachers'
+        label: "Character Count"
       },
       {
-        label: 'Ask the Community'
+        label: "Spell Check"
       },
+      {
+        label: "Grammar Check"
+      }
     ]
   },
-]
+  {
+    label: "Help",
+    submenu: [
+      {
+        label: "Check for Updates"
+      },
+      {
+        label: "Share with other Teachers"
+      },
+      {
+        label: "Ask the Community"
+      }
+    ]
+  }
+];
 
-const menu = Menu.buildFromTemplate(template)
-Menu.setApplicationMenu(menu)
+const menu = Menu.buildFromTemplate(template);
+Menu.setApplicationMenu(menu);
 
 // Adding function for a click on MenuItem
 var dateToday = null;
 
 //Function for click event
 function opendateWindow() {
- if (dateToday) {
-  dateToday.focus()
-  return;
+  if (dateToday) {
+    dateToday.focus();
+    return;
+  }
+  // Defining window size
+  dateToday = new BrowserWindow({
+    height: 200,
+    resizable: false,
+    width: 300,
+    title: "The Date Today is...",
+    minimizable: true,
+    fullscreenable: false,
+    frame: true,
+    menu: false
+  });
+  // Window URL
+  dateToday.loadURL("file://${__dirname}/navbar/navbar.html");
+  // On close of window
+  dateToday.on("closed", function() {
+    dateToday = null;
+  });
 }
-// Defining window size
-dateToday = new BrowserWindow({
- height: 200,
- resizable: false,
- width: 300,
- title: "The Date Today is...",
- minimizable: true,
- fullscreenable: false
-});
-// window URL
-dateToday.loadURL('file://' + __dirname + '/navbar/navbar.html');
-// On close of window
-dateToday.on('closed', function () {
- dateToday = null;
-});
-};
 // End of Click Window function
