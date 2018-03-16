@@ -186,6 +186,11 @@ Menu.setApplicationMenu(menu);
 // Adding function for a click on MenuItem
 const dateFormat = require('dateformat')
 
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
+    app.quit();
+  }
+});
 var dateToday = null;
 //Function for click event
 function opendateWindow() {
@@ -195,9 +200,9 @@ function opendateWindow() {
   }
   // Defining window size
   dateToday = new BrowserWindow({
-    height: 100,
+    height: 600,
     resizable: false,
-    width: 300,
+    width: 800,
     title: "The Date Today is...",
     minimizable: true,
     fullscreenable: false,

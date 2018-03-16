@@ -6,15 +6,17 @@ const navbar = require("../navbar/navbar.js");
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
-let childWindow;
+var dateToday = require('../navbar/navbar.js').remote
 
 function createWindow() {
   // Create the browser window.
   let mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    show: false,
+    show: true,
+    parent: dateToday,
   });
+
 
   mainWindow.once('ready-to-show', () => {
     mainWindow.show()
@@ -35,7 +37,7 @@ function createWindow() {
 
   // Emitted when the window is closed.
   mainWindow.on("closed", () => {
-    mainWindow = null;
+    app.quit();
   });
 
   // End of Funtion
