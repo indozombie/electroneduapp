@@ -172,9 +172,7 @@ const template = [
       },
       {
         label: "Ask the Community",
-        click () {
-
-        }
+        click() {}
       }
     ]
   }
@@ -184,7 +182,7 @@ const menu = Menu.buildFromTemplate(template);
 Menu.setApplicationMenu(menu);
 
 // Adding function for a click on MenuItem
-const dateFormat = require('dateformat')
+const dateFormat = require("dateformat");
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
@@ -195,7 +193,7 @@ var dateToday = null;
 //Function for click event
 function opendateWindow() {
   if (dateToday) {
-    dateToday.focus()
+    dateToday.focus();
     return;
   }
   // Defining window size
@@ -207,13 +205,13 @@ function opendateWindow() {
     minimizable: true,
     fullscreenable: false,
     frame: true,
-    backgroundColor: '#823981'
+    backgroundColor: "#823981"
   });
-  dateToday.once('ready-to-show', () => {
-    dateToday.show()
+  dateToday.once("ready-to-show", () => {
+    dateToday.show();
   });
   // Setting Menu in Window to not show
-  dateToday.setMenu(null)
+  dateToday.setMenu(null);
   // Window URL
   dateToday.loadURL("file://${__dirname}/navbar/date.html");
   // On close of window
