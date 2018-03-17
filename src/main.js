@@ -14,7 +14,7 @@ function createWindow() {
     width: 800,
     height: 600,
     show: true,
-    parent: dateToday
+    parent : dateToday
   });
   // and load the index.html of the app.
   mainWindow.loadURL(
@@ -26,8 +26,7 @@ function createWindow() {
   );
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools();
-  // // childWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools();
 
   // Show the main window when it is ready
     mainWindow.once("ready-to-show", () => {
@@ -61,5 +60,8 @@ app.on("activate", () => {
     createWindow();
   }
 });
+
+
+
 
 module.exports = "./navbar.navbar.js";
