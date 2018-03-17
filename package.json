@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/indozombie/electroneduapp#readme",
   "dependencies": {
-    "dateformat": "^3.0.3"
+    "dateformat": "^3.0.3",
+    "materialize-css": "^0.100.2"
   }
 }

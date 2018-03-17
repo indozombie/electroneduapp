@@ -16,11 +16,6 @@ function createWindow() {
     show: true,
     parent: dateToday
   });
-
-  mainWindow.once("ready-to-show", () => {
-    mainWindow.show();
-  });
-
   // and load the index.html of the app.
   mainWindow.loadURL(
     url.format({
@@ -33,6 +28,11 @@ function createWindow() {
   // Open the DevTools.
   // mainWindow.webContents.openDevTools();
   // // childWindow.webContents.openDevTools()
+
+  // Show the main window when it is ready
+    mainWindow.once("ready-to-show", () => {
+      mainWindow.show();
+    });
 
   // Emitted when the window is closed.
   mainWindow.on("closed", () => {

@@ -189,31 +189,39 @@ app.on("window-all-closed", () => {
     app.quit();
   }
 });
+
 var dateToday = null;
+
 //Function for click event
+
 function opendateWindow() {
   if (dateToday) {
     dateToday.focus();
     return;
   }
+
   // Defining window size
   dateToday = new BrowserWindow({
-    height: 600,
+    height: 100,
     resizable: false,
-    width: 800,
+    width: 400,
     title: "The Date Today is...",
     minimizable: true,
     fullscreenable: false,
     frame: true,
     backgroundColor: "#823981"
   });
+
   dateToday.once("ready-to-show", () => {
     dateToday.show();
   });
+
   // Setting Menu in Window to not show
   dateToday.setMenu(null);
+
   // Window URL
   dateToday.loadURL("file://${__dirname}/navbar/date.html");
+
   // On close of window
   dateToday.on("closed", function() {
     dateToday = null;
