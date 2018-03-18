@@ -46,6 +46,9 @@ function createWindow() {
 // Some APIs can only be used after this event occurs.
 app.on("ready", createWindow);
 
+mainWindow.$ = window.jQuery = require('node_modules/jquery/dist/jquery.min.js');
+mainWindow.Hammer = require('node_modules/hammerjs/hammer.min.js');
+
 // Quit when all windows are closed.
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
