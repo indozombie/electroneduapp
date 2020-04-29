@@ -19,7 +19,7 @@
   "dependencies": {
     "dateformat": "^3.0.3",
     "hammerjs": "^2.0.8",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "materialize-css": "^0.100.2",
     "mongodb": "^3.0.5",
     "mongoose": "^5.0.11"
